@@ -1,4 +1,5 @@
 # EDAgent 🤖📊
+[![CI](https://github.com/itskumara1508-web/EDAgent/actions/workflows/ci.yml/badge.svg)](https://github.com/itskumara1508-web/EDAgent/actions/workflows/ci.yml)
 ### Autonomous 11-Agent 4-Stage Exploratory Data Analysis Bot on Nonilion
 **Track**: INNOVORTEX 4.0 — *"Best AI Agent on Nonilion"*  
 **Route**: Connect a bot (Python + LangGraph + FastAPI)  
