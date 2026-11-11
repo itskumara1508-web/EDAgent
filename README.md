@@ -117,6 +117,52 @@ python3 mock_server/run_mock_demo.py
 
 ---
 
+## 📂 Running Custom Datasets
+
+You can run EDAgent on any custom spreadsheet (CSV, Excel `.xlsx`, or JSON tabular array) using multiple interfaces:
+
+### Option 1: Interactive Browser UI
+1. Start the server:
+   ```bash
+   uvicorn edagent.main:app --port 8000
+   ```
+2. Open **[http://localhost:8000/demo](http://localhost:8000/demo)** in your browser.
+3. Drag and drop any `.csv`, `.xlsx`, or `.json` file (or click the quick pre-loaded samples).
+4. Specify an optional target column (or leave it blank for auto-inference).
+5. Watch the 11-agent 4-stage pipeline run with real-time progress bars, and ask follow-up questions interactively!
+
+### Option 2: Standalone Command-Line Interface (CLI)
+Analyze any spreadsheet directly from your terminal:
+```bash
+# Auto-infer target column
+python3 -m edagent path/to/your_data.csv
+
+# Explicitly designate target column
+python3 -m edagent path/to/your_data.xlsx --target salary
+
+# Specify custom artifact export directory
+python3 -m edagent path/to/your_data.json --target price --output-dir ./my_eda_results
+```
+
+Artifacts exported:
+- `report.html`: Full standalone interactive report
+- `heatmap.png`: High-resolution correlation heatmap image
+- `cleaned_data.csv`: Guardrail-validated cleaned dataset
+- `clean.py`: Standalone reproducible Python cleaning script
+
+### Option 3: Live on Nonilion.com
+In any Nonilion room, channel, or direct message:
+- Attach your spreadsheet and mention:
+  ```
+  @EDAgent analyze this dataset. target: <your_target_column>
+  ```
+- Ask follow-up questions anytime:
+  ```
+  @EDAgent average salary by city?
+  ```
+
+---
+
 ## ☁️ Deployment on Render
 
 1. Create a new **Web Service** on [Render.com](https://render.com) using the connected GitHub repository (or deploy via Blueprints using `render.yaml`).

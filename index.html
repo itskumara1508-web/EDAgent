@@ -125,6 +125,28 @@
     </div>
   </div>
 
+  <div class="card" style="border-left: 4px solid var(--primary-light); background: #fdfefe;">
+    <h2>🚀 Run on Custom Datasets</h2>
+    <p>You can test any spreadsheet directly using either the browser playground, the command-line interface, or live on Nonilion:</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 12px;">
+      <div style="background: #f1f5f9; padding: 14px; border-radius: 8px;">
+        <h3 style="margin-top:0; font-size:15px; color: var(--primary);">🌐 Browser Playground</h3>
+        <p style="font-size:13px; margin-bottom:8px;">Drag &amp; drop any CSV, XLSX, or JSON spreadsheet in the browser:</p>
+        <code style="background: #1e293b; color: #f8fafc; padding: 4px 8px; border-radius: 4px; font-size: 13px; display: block;">http://localhost:8000/demo</code>
+      </div>
+      <div style="background: #f1f5f9; padding: 14px; border-radius: 8px;">
+        <h3 style="margin-top:0; font-size:15px; color: var(--primary);">💻 Terminal CLI</h3>
+        <p style="font-size:13px; margin-bottom:8px;">Run directly from your command line on any file:</p>
+        <code style="background: #1e293b; color: #f8fafc; padding: 4px 8px; border-radius: 4px; font-size: 13px; display: block;">python3 -m edagent &lt;file.csv&gt; --target &lt;col&gt;</code>
+      </div>
+      <div style="background: #f1f5f9; padding: 14px; border-radius: 8px;">
+        <h3 style="margin-top:0; font-size:15px; color: var(--primary);">🤖 Nonilion.com Bot</h3>
+        <p style="font-size:13px; margin-bottom:8px;">Mention in any room, channel, or DM with an attachment:</p>
+        <code style="background: #1e293b; color: #f8fafc; padding: 4px 8px; border-radius: 4px; font-size: 13px; display: block;">@EDAgent analyze this dataset. target: &lt;col&gt;</code>
+      </div>
+    </div>
+  </div>
+
   <div class="card">
     <h2>1. Executive Summary & Synthesis</h2>
     <p><strong>Target Variable:</strong> <code>churn</code> (User-specified)</p>
