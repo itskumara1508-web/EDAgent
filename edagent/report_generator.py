@@ -116,58 +116,147 @@ def generate_html_report(result: PipelineResult, output_path: str) -> str:
             pass
 
     html_content = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-color-mode="dark" data-dark-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EDAgent Full Exploratory Data Analysis Report</title>
+<title>EDAgent Exploratory Data Analysis Report</title>
 <style>
   :root {{
-    --primary: #4338ca;
-    --primary-light: #6366f1;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text: #0f172a;
-    --muted: #64748b;
-    --border: #e2e8f0;
-    --success: #10b981;
-    --warning: #f59e0b;
+    --color-canvas-default: #0d1117;
+    --color-canvas-subtle: #161b22;
+    --color-border-default: #30363d;
+    --color-border-muted: #21262d;
+    --color-fg-default: #e6edf3;
+    --color-fg-muted: #8b949e;
+    --color-accent-fg: #58a6ff;
+    --color-accent-emphasis: #1f6feb;
+    --color-accent-subtle: rgba(56, 139, 253, 0.15);
+    --color-success-fg: #3fb950;
+    --color-success-subtle: rgba(46, 160, 67, 0.15);
+    --color-attention-fg: #d29922;
+    --color-attention-subtle: rgba(187, 128, 9, 0.15);
+    --font-code: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   }}
+  * {{ box-sizing: border-box; }}
   body {{
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    background-color: var(--color-canvas-default);
+    color: var(--color-fg-default);
     margin: 0;
-    padding: 24px;
+    padding: 0;
+    font-size: 14px;
     line-height: 1.5;
+  }}
+  .gh-header {{
+    background-color: var(--color-canvas-subtle);
+    border-bottom: 1px solid var(--color-border-default);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }}
+  .gh-header a {{
+    color: var(--color-accent-fg);
+    text-decoration: none;
+    font-weight: 600;
   }}
   .container {{
     max-width: 1100px;
     margin: 0 auto;
-  }}
-  .header {{
-    background: linear-gradient(135deg, #312e81, #4338ca);
-    color: white;
-    padding: 32px;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  }}
-  .header h1 {{ margin: 0 0 8px 0; font-size: 28px; }}
-  .header p {{ margin: 0; opacity: 0.9; }}
-  .card {{
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
     padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }}
+  .card {{
+    background: var(--color-canvas-default);
+    border: 1px solid var(--color-border-default);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
   }}
   h2 {{
     margin-top: 0;
-    color: var(--primary);
-    border-bottom: 2px solid #e0e7ff;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-fg-default);
+    border-bottom: 1px solid var(--color-border-muted);
     padding-bottom: 8px;
+  }}
+  table {{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }}
+  th, td {{
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid var(--color-border-default);
+  }}
+  th {{
+    background: var(--color-canvas-subtle);
+    font-weight: 600;
+  }}
+  tr:nth-child(even) {{
+    background-color: rgba(22, 27, 34, 0.5);
+  }}
+  .badge {{
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 2em;
+    font-size: 11px;
+    font-weight: 600;
+  }}
+  .badge-success {{ background: var(--color-success-subtle); color: var(--color-success-fg); border: 1px solid rgba(46, 160, 67, 0.4); }}
+  .badge-warning {{ background: var(--color-attention-subtle); color: var(--color-attention-fg); border: 1px solid rgba(187, 128, 9, 0.4); }}
+  .badge-info {{ background: var(--color-accent-subtle); color: var(--color-accent-fg); border: 1px solid rgba(56, 139, 253, 0.4); }}
+  .heatmap-img {{
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--color-border-default);
+    margin-top: 12px;
+    background: #0d1117;
+  }}
+  pre {{
+    background: var(--color-canvas-subtle);
+    color: var(--color-fg-default);
+    border: 1px solid var(--color-border-default);
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: var(--font-code);
+    font-size: 13px;
+  }}
+  code {{
+    font-family: var(--font-code);
+    background: rgba(110, 118, 129, 0.4);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 85%;
+  }}
+  blockquote {{
+    margin: 16px 0;
+    padding: 8px 16px;
+    color: var(--color-fg-muted);
+    border-left: 4px solid var(--color-accent-emphasis);
+    background: rgba(56, 139, 253, 0.08);
+    border-radius: 0 6px 6px 0;
+  }}
+</style>
+</head>
+<body>
+<header class="gh-header">
+  <div>
+    <strong>🤖 EDAgent</strong> • Automated Multi-Agent ML &amp; Statistical Report • INNOVORTEX 4.0
+  </div>
+  <div>
+    <a href="https://github.com/itskumara1508-web/EDAgent" target="_blank">⭐ GitHub Repository</a>
+  </div>
+</header>
+<div class="container">
   }}
   table {{
     width: 100%;
