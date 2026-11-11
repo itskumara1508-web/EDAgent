@@ -1,0 +1,42 @@
+# =====================================================================
+# Render Infrastructure as Code (render.yaml)
+# INNOVORTEX 4.0: EDAgent on Nonilion
+# =====================================================================
+
+services:
+  - type: web
+    name: edagent
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-3-5-sonnet-20241022
+      - key: NONILION_API_KEY
+        sync: false
+      - key: NONILION_BOT_ID
+        value: edagent-bot
+      - key: NONILION_BASE_URL
+        value: https://www.nonilion.com/api/v1
+      - key: MPLBACKEND
+        value: Agg
+
+# =====================================================================
+# KEEP-ALIVE NOTE FOR FREE RENDER INSTANCES:
+# ---------------------------------------------------------------------
+# Render free web services automatically spin down (sleep) after 15
+# minutes of inactivity, causing cold-start delays (30-50s) on new requests.
+#
+# To keep EDAgent warm and responsive for the hackathon judges:
+# 1. Setup a free cron monitor (e.g. UptimeRobot, Cron-Job.org, or BetterStack)
+#    to ping your service's health endpoint every 10 minutes:
+#    HTTP GET https://your-edagent-service.onrender.com/health
+# 2. Alternatively, configure a free Render Cron Job service in this file.
+# =====================================================================

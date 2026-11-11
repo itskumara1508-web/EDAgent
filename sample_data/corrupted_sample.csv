@@ -1,0 +1,5 @@
+id,title,value
+1,"Incomplete row missing closing quotes and broken columns
+2,Valid Title,500.0
+# corrupted lines without delimiters or headers
+3,Another,300

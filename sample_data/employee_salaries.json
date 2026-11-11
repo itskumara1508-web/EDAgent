@@ -1,0 +1,14 @@
+[
+  {"emp_id": "E101", "department": "Engineering", "city": "San Francisco", "years_exp": 5, "education": "Master", "performance_score": 88, "salary": 145000},
+  {"emp_id": "E102", "department": "Marketing", "city": "New York", "years_exp": 3, "education": "Bachelor", "performance_score": 76, "salary": 92000},
+  {"emp_id": "E103", "department": "Engineering", "city": "Seattle", "years_exp": 8, "education": "Master", "performance_score": 94, "salary": 168000},
+  {"emp_id": "E104", "department": "Sales", "city": "Chicago", "years_exp": 4, "education": "Bachelor", "performance_score": 82, "salary": 85000},
+  {"emp_id": "E105", "department": "Engineering", "city": "San Francisco", "years_exp": 2, "education": "Bachelor", "performance_score": 79, "salary": 120000},
+  {"emp_id": "E106", "department": "Marketing", "city": "San Francisco", "years_exp": 7, "education": "Master", "performance_score": 91, "salary": 135000},
+  {"emp_id": "E107", "department": "Sales", "city": "New York", "years_exp": 6, "education": "Bachelor", "performance_score": 85, "salary": 110000},
+  {"emp_id": "E108", "department": "Engineering", "city": "Seattle", "years_exp": 10, "education": "PhD", "performance_score": 98, "salary": 195000},
+  {"emp_id": "E109", "department": "Sales", "city": "Chicago", "years_exp": 1, "education": "Bachelor", "performance_score": 70, "salary": 65000},
+  {"emp_id": "E110", "department": "Marketing", "city": "Seattle", "years_exp": 4, "education": "Bachelor", "performance_score": 80, "salary": 98000},
+  {"emp_id": "E111", "department": "Engineering", "city": "New York", "years_exp": 6, "education": "Master", "performance_score": 90, "salary": 155000},
+  {"emp_id": "E112", "department": "Sales", "city": "San Francisco", "years_exp": 5, "education": "Bachelor", "performance_score": 84, "salary": 105000}
+]
